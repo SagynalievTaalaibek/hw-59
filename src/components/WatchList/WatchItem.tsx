@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 
 interface Props {
   movieName: string;
@@ -7,12 +7,6 @@ interface Props {
 }
 
 const WatchItem: React.FC<Props> = React.memo(function WatchItem({movieName,  onMovieChange, deleteMovie}) {
-  console.log('Watch Item render');
-
-  useEffect(() => {
-    console.log('item mounted');
-  }, []);
-
   return (
     <div className="input-group mb-3 align-items-center">
       <input type="text" className="form-control" value={movieName} onChange={onMovieChange}/>

@@ -1,4 +1,5 @@
 import WatchList from './components/WatchList/WatchList';
+import Joke from './components/Joke/Joke';
 
 const App = () => {
   return (
@@ -6,6 +7,9 @@ const App = () => {
       <div className="row">
         <div className="col-5 p-3">
           <WatchList/>
+        </div>
+        <div className="col-6 p-3">
+          <Joke/>
         </div>
       </div>
     </div>

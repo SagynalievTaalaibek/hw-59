@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import {Movie} from '../../types';
 import WatchItem from './WatchItem';
+import {Movie} from '../../types';
 
 
 const WatchList = () => {
