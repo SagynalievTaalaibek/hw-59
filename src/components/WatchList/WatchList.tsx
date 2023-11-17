@@ -16,6 +16,7 @@ const WatchList = () => {
 
   const onSubmitMovie = (event: React.FormEvent) => {
     event.preventDefault();
+
     setMovies((prevState) => {
       const lastElement = prevState[prevState.length - 1];
       const id = lastElement ? lastElement.id + 1 : 1;
@@ -62,7 +63,7 @@ const WatchList = () => {
       {movies.length > 0 ? movies.map((movie) => (
         <WatchItem
           key={movie.id}
-          movie={movie}
+          movieName={movie.movieName}
           onMovieChange={(event) => movieChangeInput(event, movie.id)}
           deleteMovie={() => deleteMovie(movie.id)}
         />

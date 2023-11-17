@@ -1,19 +1,31 @@
-import React from 'react';
-import {Movie} from '../../types';
+import React, {useEffect} from 'react';
 
 interface Props {
-  movie: Movie;
+  movieName: string;
   onMovieChange: React.ChangeEventHandler<HTMLInputElement>;
   deleteMovie: React.MouseEventHandler;
 }
 
-const WatchItem: React.FC<Props> = ({movie, onMovieChange, deleteMovie}) => {
+const WatchItem: React.FC<Props> = React.memo(function WatchItem({movieName,  onMovieChange, deleteMovie}) {
+  console.log('Watch Item render');
+
+  useEffect(() => {
+    console.log('item mounted');
+  }, []);
+
   return (
     <div className="input-group mb-3 align-items-center">
-      <input type="text" className="form-control" value={movie.movieName} onChange={onMovieChange}/>
+      <input type="text" className="form-control" value={movieName} onChange={onMovieChange}/>
       <button className="btn btn-close mx-3" type="button" onClick={deleteMovie}></button>
     </div>
   );
-};
+},
+  (prevProps, nextProps) => {
+    return (
+      prevProps.movieName === nextProps.movieName
+    );
+  },
+);
+
 
 export default WatchItem;
