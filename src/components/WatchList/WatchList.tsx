@@ -27,6 +27,24 @@ const WatchList = () => {
   };
 
 
+  const movieChangeInput = (event: React.ChangeEvent<HTMLInputElement>, id: number) => {
+    const newFilm = event.target.value;
+
+    setMovies((prevState) => prevState.map((movie) => {
+      if (movie.id === id) {
+        return {...movie, movieName: newFilm };
+      }
+
+      return movie;
+    }));
+  };
+
+  const deleteMovie = (id: number) => {
+    setMovies((prevState) => prevState.filter(movie => {
+      return movie.id !== id;
+    }));
+  };
+
   return (
     <>
       <form onSubmit={onSubmitMovie}>
@@ -42,7 +60,12 @@ const WatchList = () => {
         </div>
       </form>
       {movies.length > 0 ? movies.map((movie) => (
-        <WatchItem key={movie.id}/>
+        <WatchItem
+          key={movie.id}
+          movie={movie}
+          onMovieChange={(event) => movieChangeInput(event, movie.id)}
+          deleteMovie={() => deleteMovie(movie.id)}
+        />
       )) : <p>Add some new movie</p>}
     </>
   );
